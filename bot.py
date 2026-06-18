@@ -157,10 +157,13 @@ async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
             response.text
         )
 
-    except Exception:
-        await update.message.reply_text(
-            "❌ خطا در ارتباط با Gemini"
-        )
+    except Exception as e:
+    await update.message.reply_text(
+        f"❌ خطا:\n{str(e)}"
+    )
+        
+            
+        
 
 def main():
     app = Application.builder().token(

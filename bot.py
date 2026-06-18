@@ -15,10 +15,10 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 genai.configure(api_key=GEMINI_API_KEY)
 
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-1.5-pro")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("🤖 ربات Gemini آماده است")
+    await update.message.reply_text("🤖 ربات forozan آماده است")
 
 async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:

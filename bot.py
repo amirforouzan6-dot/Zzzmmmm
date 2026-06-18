@@ -1,3 +1,9 @@
+try:
+    response = model.generate_content("سلام")
+    print("Gemini OK")
+except Exception as e:
+    print("Gemini Failed:", e)
+
 import os
 import google.generativeai as genai
 

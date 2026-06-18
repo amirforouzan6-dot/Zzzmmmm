@@ -23,9 +23,9 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 genai.configure(api_key=GEMINI_API_KEY)
 
-model = genai.GenerativeModel(
-    "gemini-1.5-pro"
-)
+model = genai.GenerativeModel("gemini-2.0-flash")
+    
+
 
 RULES = """
 📜 قوانین ربات
@@ -157,13 +157,10 @@ async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
             response.text
         )
 
-    except Exception as e:
-    await update.message.reply_text(
-        f"❌ خطا:\n{str(e)}"
-    )
-        
-            
-        
+    except Exception:
+        await update.message.reply_text(
+            "❌ خطا در ارتباط با Gemini"
+        )
 
 def main():
     app = Application.builder().token(

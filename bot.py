@@ -1,42 +1,24 @@
 import os
-import google.generativeai as genai
-
 from telegram import Update
-from telegram.ext import (
-    Application,
-    CommandHandler,
-    MessageHandler,
-    ContextTypes,
-    filters
-)
+from telegram.ext import Application, CommandHandler, ContextTypes
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
-genai.configure(api_key=GEMINI_API_KEY)
-
-model = genai.GenerativeModel("gemini-2.0-flash")
+CREATOR = "امیر علی فروزان اصل"
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("🤖 ربات 🇮🇷forozan🇮🇷 آماده است")
-
-async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    try:
-        response = model.generate_content(update.message.text)
-        await update.message.reply_text(response.text)
-
-    except Exception as e:
-        await update.message.reply_text(f"خطا:\n{e}")
+    await update.message.reply_text(
+        f"🇮🇷❄️ سلام، خوش آمدید\n\n"
+        f"سازنده: {CREATOR}"
+    )
 
 def main():
     app = Application.builder().token(BOT_TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
-    app.add_handler(
-        MessageHandler(filters.TEXT & ~filters.COMMAND, chat)
-    )
 
+    print("Bot is running...")
     app.run_polling()
 
 if __name__ == "__main__":
-    main()
+    main()ontent)
